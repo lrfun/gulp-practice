@@ -21,9 +21,9 @@ gulp.task('styles', function () {
       .pipe(less()) //该任务调用的模块       
       .pipe(gulp.dest('./dist/css/')) //将会在dist/css下生成index.css
       .pipe(concat('main.css'))
-      // .pipe(gulp.dest('dist/styles'))
-      // .pipe(rename({ suffix: '.min' }))
-      // .pipe(minifycss())
+      .pipe(gulp.dest('./dist/css/'))
+      .pipe(rename({ suffix: '.min' }))
+      .pipe(minifycss())
       .pipe(gulp.dest('./dist/css/'))     
 }); 
 
@@ -100,7 +100,7 @@ gulp.task('clean', function() {
 
  
 gulp.task('spriter', ['images','clean'], function() {
-    return gulp.src('./dist/css/main.css')//比如recharge.css这个样式里面什么都不用改，是你想要合并的图就要引用这个样式。 很重要 注意(recharge.css)这个是我的项目。别傻到家抄我一样的。
+    return gulp.src('./dist/css/main.min.css')//比如recharge.css这个样式里面什么都不用改，是你想要合并的图就要引用这个样式。 很重要 注意(recharge.css)这个是我的项目。别傻到家抄我一样的。
         .pipe(spriter({
             // The path and file name of where we will save the sprite sheet
             'spriteSheet': './dist/sprite/sprite.png', //这是雪碧图自动合成的图。 很重要
@@ -109,6 +109,7 @@ gulp.task('spriter', ['images','clean'], function() {
             'pathToSpriteSheetFromCSS': 'sprite.png' //这是在css引用的图片路径，很重要
             // 'padding':5
         }))
+        .pipe(minifycss())
         .pipe(gulp.dest('./dist/sprite/')); //最后生成出来
 });
 
