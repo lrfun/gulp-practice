@@ -132,6 +132,6 @@ gulp.task('watch',function() {
   gulp.watch('./src/js/*.js', ['scripts']);
   // 看守所有图片档
   gulp.watch('./src/img/*', ['images']);
-  gulp.watch('./src/css/*.css', ['spriter']);
+  gulp.watch('./dist/css/*.css', ['spriter']);
  
 });
